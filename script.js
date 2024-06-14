@@ -12,7 +12,7 @@ let idx = -1;
 const getWeatherData = (lat,lon) =>{
     let days16DataUrl = `api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
-    fetch(url)
+    fetch(days16DataUrl)
     .then(response =>{
         if(!response.ok){
             throw new Error("Network response was not ok");
@@ -23,8 +23,10 @@ const getWeatherData = (lat,lon) =>{
         console.log(data);
     })
     .catch(error =>{
-        alert("There was a problem check console!");
-        console.log(error);
+        if (error){
+            alert("There was a problem check console!");
+            console.log(error);
+        }
     });
 };
 
@@ -49,9 +51,10 @@ const getData = (url)=>{
         }
     })
     .catch(error =>{
-        alert("There was a problem check console!");
-        console.log(error);
-        
+        if (error){
+            alert("There was a problem check console!");
+            console.log(error);
+        }
     });
 };
 
@@ -174,11 +177,15 @@ search.addEventListener("keydown",(event)=>{
             search.value = listItems[idx].classList[1];
             idx=-1;
         }else{
-            const city = document.getElementById("search").value;
-            const data = localStorage.getItem("places");
-            store(city.toLocaleLowerCase().trim());
-            getCordinates(search.value);
-            search.value="";
+            if (search.value){
+                const city = document.getElementById("search").value;
+                const data = localStorage.getItem("places");
+                store(city.toLocaleLowerCase().trim());
+                getCordinates(search.value);
+                search.value="";
+            }else{
+                search.value = listItems[0].classList[1];
+            }
         }
         
     }

@@ -604,6 +604,14 @@ video {
   position: relative;
 }
 
+.-z-10{
+  z-index: -10;
+}
+
+.z-10{
+  z-index: 10;
+}
+
 .m-3{
   margin: 0.75rem;
 }
@@ -648,10 +656,6 @@ video {
   display: none;
 }
 
-.h-28{
-  height: 7rem;
-}
-
 .h-5{
   height: 1.25rem;
 }
@@ -662,6 +666,10 @@ video {
 
 .h-full{
   height: 100%;
+}
+
+.max-h-28{
+  max-height: 7rem;
 }
 
 .w-2\/4{
@@ -682,6 +690,14 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.w-\[40px\]{
+  width: 40px;
+}
+
+.w-\[60px\]{
+  width: 60px;
 }
 
 .cursor-pointer{
