@@ -531,7 +531,7 @@ locationUser.addEventListener("click",(even)=>{
     navigator.geolocation.getCurrentPosition(
         position =>{
             const {latitude,longitude} = position.coords;
-            const revGeoLocation = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
+            const revGeoLocation = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
             fetch(revGeoLocation)
             .then(res => res.json())
             .then(data =>{
