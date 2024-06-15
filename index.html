@@ -47,6 +47,10 @@
             color: black;
             width: 100px;
         }
+
+        .hiddenDiv{
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-[#141216] text-white font-Poppins ms-0 me-0">
@@ -76,7 +80,7 @@
         </div>
 
         <!-- current location button -->
-        <div class="flex justify-center items-center m-3">
+        <div class="flex justify-center items-center m-3 cursor-pointer" id ="locationDiv">
             <div class="bg-[#2c292e] flex justify-center items-center p-2 rounded-full hover:bg-[#3b373d]">
                 <img class="me-2 rotate-15" src="./static/aim.svg" alt="search icon" style="width: 20px;">
                 <button class="text-sm text-[#a7a6a8]" type="text" placeholder="Search..." id="userLocationBtn">Current Location</button>
@@ -85,7 +89,7 @@
     </nav>
 
     <!-- forcast section -->
-    <section class="md:flex justify-around md:h-auto lg:h-[88vh]">
+    <section class="hiddenDiv md:flex justify-around md:h-auto lg:h-[88vh]" id="section">
 
         <!-- card container for forcast -->
         <div class="flex flex-col justify-center items-center p-3 md:h-auto box-border md:p-0 lg:w-[260]">
@@ -118,7 +122,7 @@
             <div class="p-2 text-[#b6b4b8] font-bold"><span>5 Days Forcast</span></div>
 
             <!-- 5days forcast card -->
-            <div class="bg-[#1d1b1f] h-auto w-64 rounded-xl p-5 flex flex-col justify-center box-border xl:w-72 xl:h-72" id="fiveDaysForcastCard">
+            <div class="bg-[#1d1b1f] h-auto w-64 rounded-xl p-5 flex flex-col justify-around box-border xl:w-72 xl:h-72" id="fiveDaysForcastCard">
                 <div class="flex items-center justify-between text-[#b6b4b8] gap-1">
                     <div class="flex gap-1">
                         <img class="invert" src="./static/cloud.png" alt="Watch Weather Icon" style="width: 25px; height: 25px;">

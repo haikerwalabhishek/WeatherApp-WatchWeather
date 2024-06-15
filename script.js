@@ -454,12 +454,14 @@ searchBtn.addEventListener("click",(event)=> {
     cityname = city[0].toLocaleUpperCase()+city.slice(1);
     getCordinates(search.value);
     search.value="";
+    section.div.classList.remove("hiddenDiv");
 
     
 });
 
 search.addEventListener("keydown",(event)=>{
     let listItems = document.querySelectorAll(".listItem");
+    let section = document.getElementById("section");
     if (event.key === "Enter"){
         if (event.key === "Enter" && idx !== -1) {
             search.value = listItems[idx].classList[1];
@@ -471,6 +473,8 @@ search.addEventListener("keydown",(event)=>{
                 cityname = city[0].toLocaleUpperCase()+city.slice(1);
                 getCordinates(search.value);
                 search.value="";
+                section.classList.remove("hiddenDiv");
+        
             }else{
                 search.value = listItems[0].classList[1];
             }
@@ -519,5 +523,36 @@ document.addEventListener("click",(event)=>{
             idx=-1;
         }
     }
+    });
+
+const locationUser = document.getElementById("locationDiv");
+locationUser.addEventListener("click",(even)=>{
+    let section = document.getElementById("section");
+    navigator.geolocation.getCurrentPosition(
+        position =>{
+            const {latitude,longitude} = position.coords;
+            const revGeoLocation = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
+            fetch(revGeoLocation)
+            .then(res => res.json())
+            .then(data =>{
+                if (data && data.length > 0) {
+                    cityname = data[0].name;
+                    getWeatherData(latitude, longitude);
+                    getAQI(latitude, longitude);
+                } else {
+                    alert("No data found for the given coordinates!");
+                }
+            })
+            .then(section.classList.remove("hiddenDiv"))
+            .catch(()=>{
+                alert("An error occured while fetching the coordinates!");
+            })
+        },
+        error => {
+            if (error.code === error.PERMISSION_DENIED){
+                alert("Geolocation request denied. Please reset location permission to grant access again.")
+            }
+        }
+        )
 });
 
