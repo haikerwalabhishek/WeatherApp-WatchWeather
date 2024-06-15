@@ -1,8 +1,8 @@
 let apiKey = "1fc0f2a755f22e3a3d85fe668df0b5aa";
-// let geoCodingUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
-// let revGeoCodingUrl =`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
+// let geoCodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
+// let revGeoCodingUrl =`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
 // let daysSixForcastUrl = `api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-//  let AQI = `http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}`;
+//  let AQI = `https://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}`;
 
 let searchBtn = document.getElementById("searchBtn");
 let search = document.getElementById("search");
@@ -10,10 +10,12 @@ let list = document.getElementById("dropdown");
 let idx = -1;
 let cityname;
 
+// checking if the device is connected to internet
 let isOnline = () => {
     return navigator.onLine;
 };
 
+// changing month to their name
 let monthtoString = [
     "Jan",
     "Feb",
@@ -29,6 +31,7 @@ let monthtoString = [
     "Dec"
 ];
 
+// changing week to their name
 let weekDay = [
     "Sun",
     "Mon",
@@ -39,7 +42,7 @@ let weekDay = [
     "Sat"
 ];
 
-
+// changing AQI to their respective text
 let getaqiDes = (aqi) =>{
     switch (aqi){
         case 1:
@@ -55,6 +58,7 @@ let getaqiDes = (aqi) =>{
     }
 };
 
+// changing timestamp to local date
 let dateTimeFormat = (timestemp,timezone) =>{
   // Convert Unix timestamp to milliseconds
     let date = new Date((timestemp+timezone) * 1000);
@@ -64,6 +68,7 @@ let dateTimeFormat = (timestemp,timezone) =>{
     return `${week} ${dateNum} ${month}`;
 };
 
+// changing timestamp to local time
 let dateTime = (timestemp,timezone) =>{
     // Convert Unix timestamp to milliseconds
     let date = new Date((timestemp+timezone) * 1000);
@@ -73,8 +78,7 @@ let dateTime = (timestemp,timezone) =>{
     return `${hours % 12 || 12}:${minutes} ${period}`
   };
 
-
-
+//   populating the values of sunrise and sunset in the html
 let setSunCard = (sunrise,sunset,timezone) =>{
     // console.log(sunrise);
     // console.log(sunset);
@@ -110,6 +114,7 @@ let setSunCard = (sunrise,sunset,timezone) =>{
 
 };
 
+//   populating the values of visibility humidity pressure feels-like in the html
 let setWeatherDataCard = (weatherData) =>{
     let dataCard = document.getElementById("dataCard");
     dataCard.innerHTML=`
@@ -159,6 +164,7 @@ let setWeatherDataCard = (weatherData) =>{
     `
 };
 
+//   populating the current weather and next five days weather in the html
 let setWeatherCards = (weatherData,country,timezone) =>{
     let currentCard = document.getElementById("currentForcastCard");
     let fiveDaysCard = document.getElementById("fiveDaysForcastCard");
@@ -208,6 +214,7 @@ let setWeatherCards = (weatherData,country,timezone) =>{
     }
 };
 
+//   populating the AQI values in the html
 let setAQI = (pm25,so2,no2,o3,aqiss) =>{
     let aqis = document.getElementById("aqiCard");
     let aqiValue = getaqiDes(aqiss);
@@ -237,6 +244,7 @@ let setAQI = (pm25,so2,no2,o3,aqiss) =>{
     </div>`;
 };
 
+//   getting weather data through api integration
 let getWeatherData = (lat,lon) =>{
     let days16DataUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=6&appid=${apiKey}`;
 
@@ -277,8 +285,9 @@ let getWeatherData = (lat,lon) =>{
     });
 };
 
+//   getting AQI data through api integration
 let getAQI = (lat,lon) =>{
-    let AQI = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    let AQI = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     fetch(AQI)
     .then(response =>{
@@ -309,6 +318,7 @@ let getAQI = (lat,lon) =>{
     });
 };
 
+//   getting data through api integration
 let getData = (url)=>{
     fetch(url)
     .then(response =>{
@@ -342,6 +352,7 @@ let getData = (url)=>{
     });
 };
 
+//   getting cordinates through api integration
 let getCordinates = (value) =>{
     if(value){
         let city = value[0].toLocaleUpperCase()+value.slice(1);
@@ -358,6 +369,7 @@ let getCordinates = (value) =>{
     
 };
 
+// storing place names searched into local storage to populate in dropdown list
 let store = (placeName) => {
     if (placeName) {
         // Retrieve the places array from localStorage
@@ -387,6 +399,7 @@ let store = (placeName) => {
     }
 };
 
+// displaying the data into dropdown list
 let display = () =>{
     if (list.classList.contains("hidden")) {
         list.classList.remove("hidden");
@@ -433,7 +446,7 @@ let display = () =>{
     
 };
 
-
+// updating list index to traverse
 let updateSelection = (Nidx) => {
     let listItems = document.querySelectorAll(".listItem");
     if (idx !== -1) {
@@ -448,17 +461,20 @@ let updateSelection = (Nidx) => {
     }
 };
 
+// event listner for clicking search button
 searchBtn.addEventListener("click",(event)=> {
+    let section = document.getElementById("section");
     let city = document.getElementById("search").value;
     store(city.toLocaleLowerCase().trim());
     cityname = city[0].toLocaleUpperCase()+city.slice(1);
     getCordinates(search.value);
     search.value="";
-    section.div.classList.remove("hiddenDiv");
+    section.classList.remove("hiddenDiv");
 
     
 });
 
+// event listner for clicking enter arrowUp arrowDown button
 search.addEventListener("keydown",(event)=>{
     let listItems = document.querySelectorAll(".listItem");
     let section = document.getElementById("section");
@@ -507,6 +523,7 @@ search.addEventListener("keydown",(event)=>{
     }
 });
 
+// displaying dropdown list as we hover over search area
 search.addEventListener("mouseenter",()=>{
     let data = localStorage.getItem("places");
     data = JSON.parse(data);
@@ -516,6 +533,7 @@ search.addEventListener("mouseenter",()=>{
     };
 });
 
+// hiding dropdown list as soon as we click outside the list and search area
 document.addEventListener("click",(event)=>{
     if (!search.contains(event.target) && !list.contains(event.target)) { // Check if click is outside the list and search button
         if (!list.classList.contains("hidden")) {
@@ -525,13 +543,14 @@ document.addEventListener("click",(event)=>{
     }
     });
 
+// headling the location button to get cordinates and populating the weather data in html
 const locationUser = document.getElementById("locationDiv");
 locationUser.addEventListener("click",(even)=>{
     let section = document.getElementById("section");
     navigator.geolocation.getCurrentPosition(
         position =>{
             const {latitude,longitude} = position.coords;
-            const revGeoLocation = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
+            const revGeoLocation = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
             fetch(revGeoLocation)
             .then(res => res.json())
             .then(data =>{
