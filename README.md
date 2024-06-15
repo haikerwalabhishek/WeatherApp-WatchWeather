@@ -19,7 +19,7 @@ This Weather Forecast Application retrieves weather data from a selected API and
 
 ## Preview:
 
-<img src="https://raw.githubusercontent.com/haikerwalabhishek/WeatherApp-WatchWeather/master/preview2.png" height=150px width=250px>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/haikerwalabhishek/WeatherApp-WatchWeather/master/preview1.png" height=150px width=250px>
+<img src="https://raw.githubusercontent.com/haikerwalabhishek/WeatherApp-WatchWeather/master/preview2.png" height=300px width=500px>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/haikerwalabhishek/WeatherApp-WatchWeather/master/preview1.png" height=300px width=500px>
 
 
 
