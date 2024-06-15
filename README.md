@@ -12,6 +12,18 @@ This Weather Forecast Application retrieves weather data from a selected API and
 - User-friendly interface with intuitive controls
 - Error handling and validation for user inputs
 
+## Link:
+
+
+[Click Here](https://haikerwalabhishek.github.io/WeatherApp-WatchWeather/)
+
+## Preview:
+
+<img src="https://raw.githubusercontent.com/haikerwalabhishek/WeatherApp-WatchWeather/master/preview2.png" height=300px width=500px>
+<img src="https://raw.githubusercontent.com/haikerwalabhishek/WeatherApp-WatchWeather/master/preview1.png" height=300px width=500px>
+
+
+
 ## Setup Instructions
 
 ### Prerequisites
