@@ -25,7 +25,7 @@ This Weather Forecast Application retrieves weather data from a selected API and
 2. Install the dependencies:
    - npm
    - node.js
-   = tailwind
+   - tailwind
 
 ### License
 
