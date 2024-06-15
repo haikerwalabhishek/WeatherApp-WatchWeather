@@ -23,9 +23,9 @@ This Weather Forecast Application retrieves weather data from a selected API and
    git clone https://github.com/haikerwalabhishek/WeatherApp-WatchWeather.git
    
 2. Install the dependencies:
-   npm
-   node.js
-   tailwind
+   - npm
+   - node.js
+   = tailwind
 
 ### License
 
