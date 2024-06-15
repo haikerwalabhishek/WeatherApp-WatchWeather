@@ -1,8 +1,8 @@
 let apiKey = "1fc0f2a755f22e3a3d85fe668df0b5aa";
-// let geoCodingUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
-// let revGeoCodingUrl =`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
+// let geoCodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
+// let revGeoCodingUrl =`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
 // let daysSixForcastUrl = `api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-//  let AQI = `http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}`;
+//  let AQI = `https://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}`;
 
 let searchBtn = document.getElementById("searchBtn");
 let search = document.getElementById("search");
@@ -278,7 +278,7 @@ let getWeatherData = (lat,lon) =>{
 };
 
 let getAQI = (lat,lon) =>{
-    let AQI = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    let AQI = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     fetch(AQI)
     .then(response =>{
