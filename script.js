@@ -181,8 +181,8 @@ let setWeatherCards = (weatherData,country,timezone) =>{
             </div>
 
             <div class="flex justify-between mb-5 mt-3">
-                <h2 class="text-[40px]">${tempCel.toFixed(2)}<sup>&deg;C</sup></h2>
-                <img class="w-[60px]" src="https://openweathermap.org/img/wn/${weatherData[i].weatherIcon}@2x.png" alt="Weather Icon">
+                <h2 class="text-[30px]">${tempCel.toFixed(2)}<sup>&deg;C</sup></h2>
+                <img class="w-[50px]" src="https://openweathermap.org/img/wn/${weatherData[i].weatherIcon}@2x.png" alt="Weather Icon">
             </div>                
             
             <div class="flex justify-between items-center text-[#a7a6a8]">
