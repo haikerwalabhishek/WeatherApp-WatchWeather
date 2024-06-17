@@ -463,14 +463,16 @@ let updateSelection = (Nidx) => {
 
 // event listner for clicking search button
 searchBtn.addEventListener("click",(event)=> {
-    let section = document.getElementById("section");
-    let city = document.getElementById("search").value;
-    store(city.toLocaleLowerCase().trim());
-    cityname = city[0].toLocaleUpperCase()+city.slice(1);
-    getCordinates(search.value);
-    search.value="";
-    section.classList.remove("hiddenDiv");
-
+    if (search.value){
+        let section = document.getElementById("section");
+        let city = document.getElementById("search").value;
+        store(city.toLocaleLowerCase().trim());
+        cityname = city[0].toLocaleUpperCase()+city.slice(1);
+        getCordinates(search.value);
+        search.value="";
+        section.classList.remove("hiddenDiv");
+    
+    }
     
 });
 
